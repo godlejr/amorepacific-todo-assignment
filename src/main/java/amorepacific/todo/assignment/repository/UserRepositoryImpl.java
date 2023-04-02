@@ -32,6 +32,12 @@ public class UserRepositoryImpl implements UserRepository {
         return Optional.ofNullable(users);
     }
 
+
+    @Override
+    public Optional<User> findById(long id) {
+        return Optional.ofNullable(userMap.get(id));
+    }
+
     @Override
     public void deleteAll() {
         userMap.clear();

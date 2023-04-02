@@ -1,14 +1,21 @@
 package amorepacific.todo.assignment.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Data
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User extends AbstractEntity {
-    @NotBlank(message = "이름은 필수 입력 값입니다")
+
+    @Builder
+    public User(String name) {
+        this.name = name;
+    }
+
+    @Schema(description = "담당자", example = "김동주")
     private String name;
 }

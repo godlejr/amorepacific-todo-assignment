@@ -14,42 +14,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("user")
 @RequiredArgsConstructor
-@Tag(name = "UserController", description = "User 관련 기능 인터페이스 controller")
+@Tag(name = "UserController", description = "User 관련 기능 인터페이스")
 public class UserController {
 
     private final UserService userService;
 
-    @GetMapping
-    @Operation(summary = "프로필 리스트 전체", description = "프로필 리스트 전체를 조회할 수 있다")
-    public UsersResponse getUsers()  {
+    @PostConstruct
+    public void init() {
         User user = new User("김동주");
-//
-//        User user2 = new User();
-//        user2.setName("안지슬");
-//
-//        User user3 = new User();
-//        user3.setName("김은동");
-//
-//        User user4 = new User();
-//        user4.setName("박지우");
-//
-//        User user5 = new User();
-//        user5.setName("김혜수");
-//
-//
-//        // when
-//        User savedUser = userService.add(user);
-//        User savedUser2 = userService.add(user2);
-//        User savedUser3 = userService.add(user3);
-//        User savedUser4 = userService.add(user4);
-//        User savedUser5 = userService.add(user5);
+        User user2 = new User("안지슬");
+        User user3 = new User("김은동");
+        User user4 = new User("박지우");
+        User user5 = new User("김혜수");
 
+        User savedUser = userService.addUser(user);
+        User savedUser2 = userService.addUser(user2);
+        User savedUser3 = userService.addUser(user3);
+        User savedUser4 = userService.addUser(user4);
+        User savedUser5 = userService.addUser(user5);
+    }
+
+        @GetMapping
+    @Operation(summary = "프로필 리스트 조회", description = "### 프로필 리스트 전체를 조회할 수 있다.")
+    public UsersResponse getUsers()  {
         List<User> users = userService.getUsers().get();
 
         return new UsersResponse(HttpStatus.OK.value(), users);

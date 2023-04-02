@@ -10,11 +10,17 @@ public interface TodoRepository {
 
     Todo upsert(Todo todo);
 
+    Optional<List<Todo>> findAll();
+
+    Optional<List<Todo>> findByUserId(long userId);
+
     Optional<List<Todo>> findByDate(LocalDate date);
+
+    Optional<List<Todo>> findByUserIdAndDate(long userId, LocalDate date);
 
     Optional<Todo> findById(long id);
 
-    void delete(long id);
+    void deleteById(long id);
 
     void deleteAll();
 }

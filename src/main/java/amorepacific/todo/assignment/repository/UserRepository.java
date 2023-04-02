@@ -10,5 +10,7 @@ public interface UserRepository {
 
     User upsert(User user);
 
+    Optional<User> findById(long id);
+
     void deleteAll();
 }

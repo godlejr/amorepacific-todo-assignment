@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class TodoResponse {
-    @Schema(description = "상태코드", example = "200")
+    @Schema(description = "상태 코드", example = "200")
     private int statusCode;
     @Schema(description = "todo")
     private Todo todo;

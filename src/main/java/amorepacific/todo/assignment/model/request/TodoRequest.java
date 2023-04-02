@@ -3,28 +3,40 @@ package amorepacific.todo.assignment.model.request;
 import amorepacific.todo.assignment.entity.User;
 import amorepacific.todo.assignment.model.Priority;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class TodoRequest {
 
+    @Builder
+    public TodoRequest(LocalDate date, User user, Priority priority, String task, String description, String status) {
+        this.date = date;
+        this.user = user;
+        this.priority = priority;
+        this.task = task;
+        this.description = description;
+        this.status = status;
+    }
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Schema(description = "날짜", example = "2023-03-31")
     private LocalDate date;
 
-    @Schema(description = "담당자", example = "{ 1, '김동주'}", required = true)
+    @Valid
+    @Schema(description = "담당자", required = true)
     private User user;
 
-    @Schema(description = "중요도 및 우선 순위 정책", example = "{'B', 0}")
+    @Schema(description = "우선순위")
     private Priority priority;
 
+    @NotBlank(message = "업무 제목은 필수 입력 값입니다")
     @Schema(description = "업무 제목", example = "모니터링 시스템 - 예거 연동", required = true)
     private String task;
 

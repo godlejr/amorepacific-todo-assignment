@@ -31,6 +31,8 @@ public class SwaggerConfig {
                         "        - Todo 생성, 조회, 변경, 삭제\n" +
                         "            - 입력 format 주의\n" +
                         "                - Required 정의, Validation 및 Exception 적용 완료\n" +
+                        "                - Priortiy 중요도 입력 확인 필요 (S,A,B,C,D 중 하나) \n" +
+                        "                ***(정상적인 Priority Object가 전달되는 상황을 가정)***\n" +
                         "                - 특히, User에서 name은 별도 확인 필요 \n" +
                         "                ***(ID 기반 동작, ID만 정상이면 name은 별도로 오기입에 대한 정정은 하지 않은 상황 - 정상적인 Object가 전달되는 상황을 가정)***\n" +
                         "\n" +
